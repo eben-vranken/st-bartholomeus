@@ -1,16 +1,28 @@
-'use client'
+'use client';
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BlogPost from "./BlogPost";
+import { useSearchParams } from "next/navigation";
 
 const BlogFeed: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [sortOrder, setSortOrder] = useState("newest");
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        const title = searchParams.get('title');
+        const content = searchParams.get('content');
+        const date = searchParams.get('date');
+
+        if (title && content && date) {
+            console.log("Received post data from URL:", { title, content, date });
+        }
+    }, [searchParams]);
 
     const blogposts = [
         {
             title: "Wedstrijd Kalender 2024",
-            content: "Het nieuwe seizoen voor kruisboogschutters staat voor de deur! In onze kalender voor 2024 vind je alle belangrijke wedstrijden, van lokale competities tot nationale kampioenschappen. Zorg dat je deze data in je agenda zet, want elke wedstrijd biedt een kans om je vaardigheden te testen en nieuwe records te vestigen. Dit jaar verwelkomen we ook enkele nieuwe locaties, die de perfecte ambiance bieden voor spannende wedstrijden. Of je nu een ervaren schutter bent of net begint, er is voor ieder wat wils. Mis de kans niet om deel uit te maken van deze geweldige evenementen en ontmoet andere liefhebbers van de sport! Houd onze website in de gaten voor updates over inschrijvingen en extra informatie over elke wedstrijd. We kijken ernaar uit om je te zien op de schietbanen! ",
+            content: "Het nieuwe seizoen voor kruisboogschutters staat voor de deur! In onze kalender voor 2024 vind je alle belangrijke wedstrijden, van lokale competities tot nationale kampioenschappen. Zorg dat je deze data in je agenda zet, want elke wedstrijd biedt een kans om je vaardigheden te testen en nieuwe records te vestigen. Dit jaar verwelkomen we ook enkele nieuwe locaties, die de perfecte ambiance bieden voor spannende wedstrijden. Of je nu een ervaren schutter bent of net begint, er is voor ieder wat wils. Mis de kans niet om deel uit te maken van deze geweldige evenementen en ontmoet andere liefhebbers van de sport! Houd onze website in de gaten voor updates over inschrijvingen en extra informatie over elke wedstrijd. We kijken ernaar uit om je te zien op de schietbanen!",
             date: "2024-02-15"
         },
         {

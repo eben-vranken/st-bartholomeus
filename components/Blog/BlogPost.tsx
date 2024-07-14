@@ -7,8 +7,8 @@ const BlogPost: React.FC<{ title: string, content: string, date: string }> = ({ 
         <Link
             className="flex flex-col gap-y-4 bg-text/5 rounded p-3 cursor-pointer hover:brightness-90 transition-all"
             href={{
-                pathname: '/blogpost',
-                query: { title, content, date }
+                pathname: '/',
+                query: { title, content, date }  // Pass each property separately
             }}
         >
             {/* Blog Post Title */}
